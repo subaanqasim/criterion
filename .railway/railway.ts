@@ -24,6 +24,7 @@ export default defineRailway(() => {
     build: {
       builder: "RAILPACK",
       buildCommand: "pnpm build",
+      watchPatterns: ["/**"],
     },
     start: "pnpm start",
     preDeploy: "pnpm db:migrate",
