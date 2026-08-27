@@ -9,6 +9,7 @@
     "start": "node dist/src/server.js",
     "dev": "tsx watch src/server.ts",
     "typecheck": "tsc --noEmit",
+    "check": "pnpm typecheck && pnpm build && pnpm test",
     "test": "node --test dist/tests/*.test.js",
     "db:migrate": "node dist/scripts/migrate.js",
     "db:seed": "node dist/scripts/seed.js",
