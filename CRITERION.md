@@ -82,7 +82,9 @@ Next.js frontend.
 - PostgreSQL full-text search works without an external API key.
 - `GOOGLE_GENERATIVE_AI_API_KEY` enables Gemini embeddings and semantic search,
   with full-text search as the runtime fallback.
-- Railway runs `pnpm db:migrate` before each release. Run
+- Railway deploys `api-service/` from `main` and manages the production project
+  through `.railway/railway.ts`. It runs `pnpm db:migrate` before each release.
+  Run
   `pnpm --dir api-service railway:seed` once from a linked checkout, then run
   `pnpm --dir api-service railway:embed` after configuring the Google key.
 
