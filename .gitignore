@@ -12,6 +12,7 @@ coverage
 .next/
 out/
 build
+api-service/dist/
 
 # misc
 .DS_Store

@@ -68,6 +68,24 @@ User speaks question
 - **Database**: PostgreSQL + pgvector (HNSW index), Drizzle ORM
 - **Streaming**: Server-Sent Events (SSE) with `JsonToSseTransformStream`
 
+### API-only deployment
+
+`api-service/` is the Railway deployment for clients that only need the public
+`/api/v1` search routes. It is a small Node service and does not build or run the
+Next.js frontend.
+
+- `GET /api/v1` returns service metadata.
+- `GET /api/v1/quran/search?q=...` searches all 6,236 Quran verses.
+- `GET /api/v1/hadith/search?q=...` searches all six Hadith collections.
+- All `/api/v1` requests require `Authorization: Bearer <CRITERION_API_KEY>`.
+- `/health` remains public for Railway deployment checks.
+- PostgreSQL full-text search works without an external API key.
+- `GOOGLE_GENERATIVE_AI_API_KEY` enables Gemini embeddings and semantic search,
+  with full-text search as the runtime fallback.
+- Railway runs `pnpm db:migrate` before each release. Run
+  `pnpm --dir api-service railway:seed` once from a linked checkout, then run
+  `pnpm --dir api-service railway:embed` after configuring the Google key.
+
 ---
 
 ## 4. Core Files & Architecture
